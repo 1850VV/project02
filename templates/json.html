@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JsonResponse案例</title>
+
+    <script src="/static/js/jquery-1.12.4.min.js"></script>
+    <script>
+
+        $(function () {
+            // 设置按钮点击事件
+            $('#get_employee').click(function () {
+                // 发起ajax get请求,获取服务器员工json数据,刷新界面显示
+                $.get('/getemployee', function (data) {
+                    // data: 服务器返回的员工数据, js对象
+                    // alert(data.name)
+                    // 显示员工数据
+                    // empty() : 清空上一次加进来的<li>标签
+                    $('#employee').empty()
+                        .append('<li>' + data.name + '</li>')
+                        .append('<li>' + data.age + '</li>')
+                        .append('<li>' + data.sex + '</li>')
+                        .append('<li>' + data.salary + '</li>')
+                        .append('<li>' + data.comment + '</li>');
+                })
+            })
+        })
+
+    </script>
+
+</head>
+<body>
+
+<h3>JsonResponse案例: 网页的局部刷新</h3>
+
+<input type="button" value="获取员工信息" id="get_employee">
+
+<ul id="employee">
+</ul>
+
+</body>
+</html>
